@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="./script.js"></script>
+</head>
+
+<body>
+    <div class="clock">
+        <div class="clock-face">
+            <div class="hand hour-hand"></div>
+            <div class="hand min-hand"></div>
+            <div class="hand seconds-hand"></div>
+            <div class='black-point'></div>
+        </div>
+    </div>
+
+    <div class="date"></div>
+
+    <script>
+        const secondHand = document.querySelector(".seconds-hand");
+        const mindHand = document.querySelector(".min-hand");
+        const hourdHand = document.querySelector(".hour-hand");
+        const date = document.querySelector('.date')
+
+        class setDate {
+            constructor(date) {
+                this.date = date;
+            }
+
+            setD() {
+
+                const date = new Date;
+                const second = date.getSeconds();
+                const min = date.getMinutes();
+                const hour = date.getHours();
+
+                const secondDegreez = ((second / 60) * 360) + 90;
+                const minDegreez = ((min / 60) * 360) + 90;
+                const hourDegreez = ((hour / 12) * 360) + 90;
+
+                secondHand.style.transform = `rotate(${secondDegreez}deg)`
+                mindHand.style.transform = `rotate(${minDegreez}deg)`
+                hourdHand.style.transform = `rotate(${hourDegreez}deg)`
+            }
+            time() {
+                // const date = new Date;
+                // let second = date.getSeconds();
+                // let min = date.getMinutes();
+                // let hour = date.getHours();
+                // if (second <= 9) second = '0' + second;
+                // if (min <= 9) min = '0' + min;
+                // if (hour <= 9) hour = '0' + hour;
+                // const el = `${hour}:${min}:${second}`;
+                // console.log(el)
+            }
+        };
+        const func = new setDate;
+        setInterval(func.setD, 1000);
+        const el = setInterval(func.time, 1000);
+        date.innerHTML = el;
+    </script>
+</body>
+
+</html>
